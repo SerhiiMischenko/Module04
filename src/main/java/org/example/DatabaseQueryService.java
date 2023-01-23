@@ -58,9 +58,6 @@ public class DatabaseQueryService {
         return list;
     }
 
-    private record MaxProjectsClient(String name, int project_count) {
-    }
-
     public List<MaxSalaryWorker> findMaxSalaryWorker() {
         ResultSet resultSet;
         List<MaxSalaryWorker> list = new ArrayList<>();
