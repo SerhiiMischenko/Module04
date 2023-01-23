@@ -1,9 +1,11 @@
 package org.example;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class Database {
     private static Database instance;
@@ -19,14 +21,21 @@ public class Database {
         return instance;
     }
     public Connection getConnection() {
-        String dbUrl = "jdbc:mysql://127.0.0.1:3306/mydb";
-        String dbUser = "root";
-        String dbPass = "Lolka911";
+        File file = new File("/Users/serhiimischenko/IdeaProjects/Module04/src/main/resources/properties.properties");
+        Properties properties = new Properties();
         Connection conn = null;
-        try{
-            conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try {
+            properties.load(new FileReader(file));
+            String dbUrl = properties.getProperty("dbUrl");
+            String dbUser = properties.getProperty("dbUser");
+            String dbPass = properties.getProperty("dbPass");
+            try{
+                conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return conn;
     }
