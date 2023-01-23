@@ -40,8 +40,6 @@ public class DatabaseQueryService {
         return list;
     }
 
-    private record LongestProject(int id, int monthCount) {
-    }
     public List<MaxProjectsClient> findMaxProjectsClient() {
         ResultSet resultSet;
         List<MaxProjectsClient> list = new ArrayList<>();
@@ -81,9 +79,6 @@ public class DatabaseQueryService {
         return list;
     }
 
-    private record MaxSalaryWorker(String name, int salary) {
-    }
-
     public List<YoungestEldestWorkers> findYoungestEldestWorkers() {
         ResultSet resultSet;
         List<YoungestEldestWorkers> list = new ArrayList<>();
@@ -103,8 +98,6 @@ public class DatabaseQueryService {
         return list;
     }
 
-    private record YoungestEldestWorkers(String type, String name, String birthDay) {
-    }
     public List<Project_prices> printProject_prices() {
         ResultSet resultSet;
         List<Project_prices> list = new ArrayList<>();
@@ -121,8 +114,5 @@ public class DatabaseQueryService {
             throw new RuntimeException(e);
         }
         return list;
-    }
-
-    private record Project_prices(int id, int price) {
     }
 }
